@@ -5,16 +5,16 @@ import com.foodlink.permissions.UserTypeEnum;
 import com.foodlink.repository.RoleRepository;
 import com.foodlink.repository.UserRepository;
 import com.foodlink.roles.Role;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
-@Transactional
 public class UserService {
 
     @Autowired
@@ -24,32 +24,23 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public UserEntity createUser(String cnpj, String username, String password, byte[] profile_picture, UserTypeEnum userTypeEnum) {
-        if (userRepository.findByUsername(username).isPresent()) {
-            throw new IllegalStateException("Username already exists");
-        }
-        UserEntity user = new UserEntity();
-        user.setCnpj(cnpj);
-        user.setUsername(username);
-        user.setPassword(passwordEncoder.encode(password));
-        user.setProfile_picture(profile_picture);
-        user.setUserTypeEnum(userTypeEnum);
+    public void registerUser(UserEntity user, UserTypeEnum type) {
+        // Codifica a senha
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        Role role;
-        if (userTypeEnum == UserTypeEnum.ONG) {
-            role = roleRepository.findByName("ROLE_ONG")
-                    .orElseThrow(() -> new IllegalStateException("Role ONG not found"));
-        } else {
-            role = roleRepository.findByName("ROLE_RESTAURANTE")
-                    .orElseThrow(() -> new IllegalStateException("Role RESTAURANTE not found"));
-        }
+        // Encontra o papel correspondente ao tipo
+        Role role = roleRepository.findByName(type.name())
+                .orElseThrow(() -> new RuntimeException("Role not found"));
 
-        user.getRoles().add(role);
+        // Adiciona o papel ao usuário
+        user.setRoles(Set.of(role));
 
-        System.out.println("Salvando o usuário com username: " + username);
+        // Salva o usuário no repositório
+        userRepository.save(user);
+    }
 
-
-        return this.userRepository.save(user);
+    public boolean cnpjExists(String cnpj) {
+        return userRepository.findByCnpj(cnpj).isPresent();
     }
 
     public Optional<UserEntity> findUserByUsername(String username) {

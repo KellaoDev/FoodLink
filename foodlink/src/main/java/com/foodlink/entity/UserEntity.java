@@ -23,13 +23,13 @@ public class UserEntity {
     private Long id;
     @Column(nullable = false, unique = true)
     private String cnpj;
-    @Column(nullable = false, unique = true)
+    @Column
     private String username;
     @Column(nullable = false, unique = true)
     private String password;
-    @Lob
-    @Column(name = "profile_picture", nullable = false, unique = true)
-    private byte[] profile_picture;
+    //@Lob
+    //@Column(name = "profile_picture", nullable = false, unique = true)
+    //private byte[] profile_picture;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private UserTypeEnum userTypeEnum;

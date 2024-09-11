@@ -16,17 +16,10 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.csrf(c -> c.disable())
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/index", "/auth/displayRegister").permitAll()
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/ong/**").hasRole("ONG")
-                        .requestMatchers("/restaurante/**").hasRole("RESTAURANTE")
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
                 .formLogin(f -> f
                         .loginPage("/index")
-                        .loginProcessingUrl("/auth/login")
-                        .defaultSuccessUrl("/menu")
-                        .failureUrl("/index")
                         .permitAll()
                 )
                 .sessionManagement(s -> s
