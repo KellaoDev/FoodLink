@@ -1,33 +1,35 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-
-<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Registro</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <form th:action="@{/auth/register}" th:method="post" th:object="${user}">
-        <div>
-            <label for="username">CNPJ:</label>
-            <input type="text" id="cnpj" name="cnpj" th:field="*{cnpj}" required />
-        </div>
-        <div>
-            <label for="password">Senha:</label>
-            <input type="password" id="password" name="password" th:field="*{password}" required />
-        </div>
-        <div>
-            <label>Tipo de Conta:</label><br>
-            <input type="radio" id="restaurante" name="role" value="RESTAURANTE" required />
-            <label for="restaurante">Restaurante</label><br>
-            <input type="radio" id="ong" name="role" value="ONG" required />
-            <label for="ong">ONG</label>
-        </div>
-        <div>
-            <button type="submit">Cadastrar</button>
-        </div>
-    </form>
-    <p>Já tem uma conta? <a th:href="@{/auth/login}">Faça login</a></p>
+<h2>Registrar-se</h2>
+<form th:action="@{/auth/register}" method="post">
+    <div>
+        <label for="cnpj">CNPJ:</label>
+        <input type="text" id="cnpj" name="cnpj" required>
+    </div>
+    <div>
+        <label for="password">Senha:</label>
+        <input type="password" id="password" name="password" required>
+    </div>
+    <div>
+        <label>Tipo de Usuário:</label><br>
+        <input type="radio" id="restaurante" name="type" value="RESTAURANTE" required>
+        <label for="restaurante">Restaurante</label><br>
+        <input type="radio" id="ong" name="type" value="ONG" required>
+        <label for="ong">ONG</label>
+    </div>
+    <div>
+        <button type="submit">Registrar</button>
+    </div>
+</form>
+<div>
+    <p>Já tem uma conta? <a th:href="@{/auth/login}">Login aqui</a></p>
+</div>
 </body>
 </html>

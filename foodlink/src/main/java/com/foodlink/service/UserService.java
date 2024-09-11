@@ -24,28 +24,26 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public void registerUser(UserEntity user, UserTypeEnum type) {
-        // Codifica a senha
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+   public void registerUser(String cnpj, String password, UserTypeEnum type) {
+       UserEntity user = new UserEntity();
+       user.setCnpj(cnpj);
+       user.setPassword(passwordEncoder.encode(password));
+       user.setUserTypeEnum(type);
 
-        // Encontra o papel correspondente ao tipo
-        Role role = roleRepository.findByName(type.name())
-                .orElseThrow(() -> new RuntimeException("Role not found"));
+       Role role;
+       if(type == UserTypeEnum.RESTAURANTE) {
+           role = roleRepository.findByName("ROLE_RESTAURANTE");
+       } else {
+           role = roleRepository.findByName("ROLE_ONG");
+       }
 
-        // Adiciona o papel ao usuário
-        user.setRoles(Set.of(role));
+       if (role == null) {
+           throw new RuntimeException("Role não encontrada: " + (type == UserTypeEnum.RESTAURANTE ? "ROLE_RESTAURANTE" : "ROLE_ONG"));
+       }
 
-        // Salva o usuário no repositório
-        userRepository.save(user);
-    }
-
-    public boolean cnpjExists(String cnpj) {
-        return userRepository.findByCnpj(cnpj).isPresent();
-    }
-
-    public Optional<UserEntity> findUserByUsername(String username) {
-        return this.userRepository.findByUsername(username);
-    }
+       user.setRoles(Set.of(role));
+       userRepository.save(user);
+   }
 
     public List<UserEntity> findAll() {
         return this.userRepository.findAll();

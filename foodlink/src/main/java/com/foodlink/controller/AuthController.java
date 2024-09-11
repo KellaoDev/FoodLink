@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Optional;
-import java.util.Set;
-
 @Controller
 @RequestMapping("/auth")
 public class AuthController {
@@ -36,37 +33,22 @@ public class AuthController {
         return "index";
     }
 
-    @GetMapping("/displayRegister")
+    @GetMapping("/register")
     public String displayRegister(Model model) {
-        model.addAttribute("user", new UserEntity());
-        model.addAttribute("userTypes", UserTypeEnum.values());
-        return "/auth/displayRegister";
+        return "auth/displayRegister";
     }
 
     @PostMapping("/register")
     public String registerUser(@RequestParam String cnpj,
-                               @RequestParam String password,
-                               @RequestParam String role, Model model) {
-
-        if (userService.cnpjExists(cnpj)) {
-            model.addAttribute("error", "Nome de usuário já existe");
-            return "redirect:/auth/displayRegister";
-        }
-
-        UserEntity user = new UserEntity();
-        user.setCnpj(cnpj);
-        user.setPassword(password);
-
-        UserTypeEnum userType;
+                             @RequestParam String password,
+                             @RequestParam UserTypeEnum type) {
         try {
-            userType = UserType.valueOf(role); // 'role' deve corresponder ao nome do enum
-        } catch (IllegalArgumentException e) {
-            model.addAttribute("error", "Tipo de conta inválido");
-            return "redirect:/auth/displayRegister";
+            userService.registerUser(cnpj, password, type);
+            return "redirect:/auth/login";
+        } catch (Exception e) {
+            return "auth/displayRegister";
         }
 
-        userService.registerUser(user, userType);
-
-        return "redirect:/login";
     }
+
 }
