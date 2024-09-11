@@ -1,0 +1,28 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form th:action="@{/auth/register}" method="post" th:object="${user}">
+        <label for="cnpj">CNPJ:</label>
+        <input type="text" id="cnpj" name="cnpj" th:field="*{cnpj}" required><br>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" th:field="*{username}"><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br>
+        <label for="userType">User Type:</label>
+        <select id="userType" name="userType" required>
+            <option value="ONG">ONG</option>
+            <option value="RESTAURANTE">Restaurante</option>
+        </select><br>
+        <button type="submit">Register</button>
+    </form>
+    <div th:if="${message != null}" th:text="${message}"></div>
+    <div th:if="${error != null}" th:text="${error}"></div>
+</body>
+</html>

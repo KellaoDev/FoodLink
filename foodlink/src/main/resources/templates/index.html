@@ -1,0 +1,23 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form th:action="@{/auth/login}" method="post">
+        <label>CNPJ</label>
+        <input type="text">
+        <label>PASSWORD</label>
+        <input type="text">
+        <label></label>
+        <input type="text">
+        <input type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+        <label>Restaurante ou Comercio.</label>
+        <a href="/auth/displayRegister">CADASTRAR</a>
+    </form>
+</body>
+</html>
