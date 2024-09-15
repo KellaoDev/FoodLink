@@ -50,7 +50,7 @@ public class SecurityConfig {
                 .formLogin(f -> f
                         .loginPage("/auth/login")
                         .loginProcessingUrl("/auth/login")
-                        .defaultSuccessUrl("/menu")
+                        .defaultSuccessUrl("/menu/entrar")
                         .failureUrl("/auth/login?error=true")
                         .permitAll()
                 )
