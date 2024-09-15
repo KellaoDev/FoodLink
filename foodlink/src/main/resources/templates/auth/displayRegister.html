@@ -7,7 +7,7 @@
 </head>
 <body>
 <h2>Registrar-se</h2>
-<form th:action="@{/auth/register}" method="post">
+<form th:action="@{/auth/register}" th:object="${user}" method="post">
     <div>
         <label for="cnpj">CNPJ:</label>
         <input type="text" id="cnpj" name="cnpj" required>
@@ -18,9 +18,9 @@
     </div>
     <div>
         <label>Tipo de Usuário:</label><br>
-        <input type="radio" id="restaurante" name="type" value="RESTAURANTE" required>
+        <input type="radio" id="restaurante" th:field="*{userTypeEnum}" name="type" value="RESTAURANTE" required>
         <label for="restaurante">Restaurante</label><br>
-        <input type="radio" id="ong" name="type" value="ONG" required>
+        <input type="radio" id="ong"  th:field="*{userTypeEnum}" name="type" value="ONG" required>
         <label for="ong">ONG</label>
     </div>
     <div>

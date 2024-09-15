@@ -17,8 +17,6 @@ import java.util.Set;
 @Service
 public class UserService  {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
-
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -26,34 +24,18 @@ public class UserService  {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-   public void registerUser(String cnpj, String password, UserTypeEnum type) {
+   public void registerUser(UserEntity user) {
 
-       //LOG
-       logger.debug("Registering user with CNPJ: {}", cnpj);
+       user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-       if (userRepository.findByCnpj(cnpj) != null) {
-
-           //LOG
-           logger.error("User with CNPJ {} already exists", cnpj);
-           throw new DataIntegrityViolationException("User exists");
+       if(user.getUserTypeEnum() == UserTypeEnum.RESTAURANTE) {
+           Role roleRestaurante = roleRepository.findByName("ROLE_RESTAURANTE");
+           user.setRoles(Set.of(roleRestaurante));
+       } else if (user.getUserTypeEnum() == UserTypeEnum.ONG) {
+           Role roleOng = roleRepository.findByName("ROLE_ONG");
+           user.setRoles(Set.of(roleOng));
        }
 
-       UserEntity user = new UserEntity();
-       user.setCnpj(cnpj);
-       user.setPassword(passwordEncoder.encode(password));
-       user.setUserTypeEnum(type);
-
-       Role role = roleRepository.findByName(type == UserTypeEnum.RESTAURANTE ? "ROLE_RESTAURANTE" : "ROLE_ONG");
-
-       if (role == null) {
-           //LOG
-           logger.error("Role not found for type: {}", type.name());
-           throw new RuntimeException("Role não encontrada: " + (type == UserTypeEnum.RESTAURANTE ? "ROLE_RESTAURANTE" : "ROLE_ONG"));
-       }
-
-       user.setRoles(Set.of(role));
        userRepository.save(user);
-
-       logger.info("User registered successfully with CNPJ: {}", cnpj);
    }
 }

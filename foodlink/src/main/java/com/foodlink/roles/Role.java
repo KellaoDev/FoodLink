@@ -1,11 +1,14 @@
 package com.foodlink.roles;
 
+import com.foodlink.entity.UserEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "roles")
@@ -13,16 +16,14 @@ import org.springframework.security.core.GrantedAuthority;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Role implements GrantedAuthority {
+public class Role  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true, nullable = false)
     private String name;
-    @Override
-    public String getAuthority() {
-        return name;
-    }
 
+    @ManyToMany(mappedBy = "roles")
+    private Set<UserEntity> users = new HashSet<>();
 }
