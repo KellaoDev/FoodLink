@@ -8,22 +8,23 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
 
-   @Override
+    @Override
     public UserDetails loadUserByUsername(String cnpj) throws UsernameNotFoundException {
 
-       UserEntity user = userRepository.findByCnpj(cnpj);
-       if(user == null) {
-           System.out.println("User not found with CNPJ: " + cnpj); // Log para depuração
-           throw new UsernameNotFoundException("User not found");
-       }
-
-       return new CustomUserDetails(user);
-   }
-
+        UserEntity user = userRepository.findByCnpj(cnpj);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found");
+        }
+        if (user.getRoles().isEmpty()) {
+            throw new UsernameNotFoundException("Usuário não tem roles atribuídas");
+        }
+        return new CustomUserDetails(user);
+    }
 }

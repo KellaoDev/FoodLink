@@ -8,7 +8,6 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -43,14 +42,13 @@ public class SecurityConfig {
         return http.csrf(c -> c.disable())
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/auth/register", "auth/displayRegister", "/auth/login").permitAll()
-                        .requestMatchers("/menu/**").hasRole("RESTAURANTE")
-                        .requestMatchers("/menu/**").hasRole("ONG")
+                        .requestMatchers("/menu/entrar").hasAnyRole("RESTAURANTE", "ONG")
                         .anyRequest().authenticated()
                 )
                 .formLogin(f -> f
                         .loginPage("/auth/login")
                         .loginProcessingUrl("/auth/login")
-                        .defaultSuccessUrl("/menu/entrar")
+                        .defaultSuccessUrl("/menu/entrar", true)
                         .failureUrl("/auth/login?error=true")
                         .permitAll()
                 )

@@ -1,11 +1,34 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Menu</title>
 </head>
 <body>
-AUTENTICADO
+<h1>Bem-vindo ao Menu</h1>
+<p>
+    Nome do Usuário: <span sec:authentication="name"></span>
+</p>
+Authenticated user roles:
+<div sec:authentication="principal.authorities"></div>
+
+<!-- Conteúdo exclusivo para Restaurantes -->
+<div sec:authorize="hasRole('ROLE_RESTAURANTE')">
+    <h2>Conteúdo para Restaurantes</h2>
+    <p>Aqui está o conteúdo exclusivo para Restaurantes.</p>
+</div>
+
+<!-- Conteúdo exclusivo para ONGs -->
+<div sec:authorize="hasRole('ROLE_ONG')">
+    <h2>Conteúdo para ONGs</h2>
+    <p>Aqui está o conteúdo exclusivo para ONGs.</p>
+</div>
+
+<!-- Conteúdo comum para todos -->
+<div>
+    <h2>Conteúdo Comum</h2>
+    <p>Este conteúdo é visível para todos os usuários autenticados.</p>
+</div>
 </body>
 </html>

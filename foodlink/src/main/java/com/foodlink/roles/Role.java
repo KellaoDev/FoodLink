@@ -26,4 +26,9 @@ public class Role  {
 
     @ManyToMany(mappedBy = "roles")
     private Set<UserEntity> users = new HashSet<>();
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }
