@@ -1,14 +1,11 @@
 package com.foodlink.roles;
 
-import com.foodlink.entity.UserEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
-
-import java.util.Set;
 
 @Entity
 @Table(name = "roles")

@@ -22,18 +22,12 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private RoleRepository roleRepository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
     @GetMapping("/login")
-    public String exibirIndex() {
+    public String exibirLogin() {
         return "index";
     }
 
-    @GetMapping("/register")
+    @GetMapping("/displayRegister")
     public String displayRegister(Model model) {
         return "auth/displayRegister";
     }
@@ -48,7 +42,6 @@ public class AuthController {
         } catch (Exception e) {
             return "auth/displayRegister";
         }
-
     }
 
 }

@@ -2,7 +2,6 @@
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -10,8 +9,8 @@
 <body>
     <form th:action="@{/auth/login}" method="post">
         <div>
-            <label for="cnpj">Usuário:</label>
-            <input type="text" id="cnpj" name="cnpj" required />
+            <label for="cnpj">CNPJ:</label>
+            <input type="text" id="cnpj" name="username" required />
         </div>
         <div>
             <label for="password">Senha:</label>
@@ -21,6 +20,6 @@
             <button type="submit">Entrar</button>
         </div>
     </form>
-    <a th:href="@{/auth/register}">CADASTRAR</a>
+    <a th:href="@{/auth/displayRegister}">CADASTRAR</a>
 </body>
 </html>
