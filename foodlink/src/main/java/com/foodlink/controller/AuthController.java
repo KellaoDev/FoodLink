@@ -1,5 +1,6 @@
 package com.foodlink.controller;
 
+import com.foodlink.dto.UserRegistrationDTO;
 import com.foodlink.entity.UserEntity;
 import com.foodlink.permissions.UserTypeEnum;
 import com.foodlink.repository.RoleRepository;
@@ -36,18 +37,12 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String registerUser(@ModelAttribute("user") UserEntity user, Model model) {
+    public String registerUser(@ModelAttribute("user") UserRegistrationDTO userDto, Model model) {
         try {
-            Role role;
-            if (user.getUserTypeEnum() == UserTypeEnum.RESTAURANTE) {
-                role = roleRepository.findByName("ROLE_RESTAURANTE");
-            } else {
-                role = roleRepository.findByName("ROLE_ONG");
-            }
-            user.setRoles(Set.of(role));
-            userService.registerUser(user);
+            userService.registerUser(userDto);
             return "redirect:/auth/login";
         } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
             return "auth/displayRegister";
         }
     }

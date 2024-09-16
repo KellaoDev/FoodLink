@@ -10,11 +10,19 @@
 <form th:action="@{/auth/register}" th:object="${user}" method="post">
     <div>
         <label for="cnpj">CNPJ:</label>
-        <input type="text" id="cnpj" name="cnpj" required>
+        <input type="text" id="cnpj" name="cnpj" th:field="*{cnpj}" required>
+    </div>
+    <div>
+        <label for="cnpj">Username:</label>
+        <input type="text" id="username" name="username" th:field="*{username}" required>
     </div>
     <div>
         <label for="password">Senha:</label>
         <input type="password" id="password" name="password" required>
+    </div>
+    <div>
+        <label for="password">Confirmar Senha:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required>
     </div>
     <div>
         <label>Tipo de Usuário:</label><br>
@@ -27,6 +35,7 @@
         <button type="submit">Registrar</button>
     </div>
 </form>
+
 <div>
     <p>Já tem uma conta? <a th:href="@{/auth/login}">Login aqui</a></p>
 </div>

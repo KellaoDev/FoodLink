@@ -27,6 +27,9 @@ public class UserEntity {
     private String cnpj;
 
     @Column(nullable = false, unique = true)
+    private String username;
+
+    @Column(nullable = false, unique = true)
     private String password;
 
     @Enumerated(EnumType.STRING)

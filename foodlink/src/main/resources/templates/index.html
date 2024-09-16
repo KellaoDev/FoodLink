@@ -7,19 +7,23 @@
     <title>Title</title>
 </head>
 <body>
-    <form th:action="@{/auth/login}" method="post">
-        <div>
-            <label for="cnpj">CNPJ:</label>
-            <input type="text" id="cnpj" name="username" required />
-        </div>
-        <div>
-            <label for="password">Senha:</label>
-            <input type="password" id="password" name="password" required />
-        </div>
-        <div>
-            <button type="submit">Entrar</button>
-        </div>
-    </form>
-    <a th:href="@{/auth/displayRegister}">CADASTRAR</a>
+<form th:action="@{/auth/login}" method="post">
+    <div>
+        <label for="cnpj">CNPJ:</label>
+        <input type="text" id="cnpj" name="username" required/>
+    </div>
+    <div>
+        <label for="password">Senha:</label>
+        <input type="password" id="password" name="password" required/>
+    </div>
+    <div>
+        <label for="rememberMe">Remember Me:</label>
+        <input type="checkbox" id="rememberMe" name="remember-me"><br>
+    </div>
+    <div>
+        <button type="submit">Entrar</button>
+    </div>
+</form>
+<a th:href="@{/auth/displayRegister}">CADASTRAR</a>
 </body>
 </html>
