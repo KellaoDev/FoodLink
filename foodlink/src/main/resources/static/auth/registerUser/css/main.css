@@ -226,7 +226,7 @@ iframe {
 }
 
 .login100-form-title {
-  font-family: Poppins-Bold;
+  font-family: Poppins-Bold, Arial, Helvetica, sans-serif;
   font-size: 24px;
   color: #0000FF;
   line-height: 1.2;
@@ -247,7 +247,7 @@ iframe {
 }
 
 .input100 {
-  font-family: Poppins-Medium;
+  font-family: Poppins-Medium, Arial, Helvetica, sans-serif;
   font-size: 15px;
   line-height: 1.5;
   color: #666666;
@@ -343,13 +343,14 @@ iframe {
   display: -moz-box;
   display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
+  gap: 10px;
+
   justify-content: center;
   padding-top: 20px;
 }
 
 .login100-form-btn {
-  font-family: Montserrat-Bold;
+  font-family: Montserrat-Bold, Arial, Helvetica, sans-serif;
   font-size: 15px;
   line-height: 1.5;
   color: #fff;
@@ -444,7 +445,7 @@ iframe {
   right: 8px;
   pointer-events: none;
 
-  font-family: Poppins-Medium;
+  font-family: Poppins-Medium, Arial, Helvetica, sans-serif;
   color: #c80000;
   font-size: 13px;
   line-height: 1.4;
@@ -461,7 +462,7 @@ iframe {
 
 .alert-validate::after {
   content: "\f06a";
-  font-family: FontAwesome;
+  font-family: FontAwesome, Arial, Helvetica, sans-serif;
   display: block;
   position: absolute;
   color: #c80000;

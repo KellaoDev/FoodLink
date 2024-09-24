@@ -11,9 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
-import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
 
 import javax.sql.DataSource;
 
@@ -59,6 +57,7 @@ public class SecurityConfig {
                         .requestMatchers("/auth/register", "auth/displayRegister", "/auth/login").permitAll()
                         .requestMatchers("/auth/loginUser/**", "/static/auth/loginUser/**").permitAll()
                         .requestMatchers("/auth/registerUser/**", "/static/auth/registerUser/**").permitAll()
+                        .requestMatchers("/restaurante/**", "/static/restaurante/**").hasRole("RESTAURANTE")
                         .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
                         .requestMatchers("/menu/painel").hasAnyRole("RESTAURANTE", "ONG")
                         .anyRequest().authenticated()

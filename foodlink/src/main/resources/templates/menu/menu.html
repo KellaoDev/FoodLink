@@ -10,10 +10,10 @@
 </head>
 <body>
 <div class="navbar">
-    <a href="#home">Home</a>
+    <a th:href="@{/menu/painel}">Home</a>
     <a href="#doar-alimentos" sec:authorize="hasRole('ROLE_RESTAURANTE')">Doar Alimentos</a>
     <a href="#visualizar-doacoes" sec:authorize="hasRole('ROLE_ONG')">Visualizar Doações</a>
-    <a href="#sair">Sair</a>
+    <a  th:href="@{/logout}">Sair</a>
 </div>
 
 <div class="container">
@@ -33,7 +33,7 @@
         <div sec:authorize="hasRole('ROLE_RESTAURANTE')">
             <h3>Restaurante</h3>
             <div class="buttonposition">
-                <a href="#doar-alimentos" class="button">Criar Nova Doação</a>
+                <a th:href="@{/restaurante}" class="button">Criar Nova Doação</a>
                 <a href="#doacoes-realizadas" class="button">Minhas Doações Realizadas</a>
             </div>
         </div>

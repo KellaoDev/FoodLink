@@ -43,7 +43,6 @@ public class AuthController {
         }
     }
 
-
     @GetMapping("/displayRegister")
     public String displayRegister(Model model) {
         model.addAttribute("user", new UserEntity());

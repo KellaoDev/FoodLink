@@ -19,7 +19,6 @@ public class MenuController {
         } else {
             model.addAttribute("name", "Não autenticado");
         }
-
         return "menu/menu";
     }
 

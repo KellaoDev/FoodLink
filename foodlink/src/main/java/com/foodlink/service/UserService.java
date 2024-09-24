@@ -6,6 +6,7 @@ import com.foodlink.permissions.UserTypeEnum;
 import com.foodlink.repository.RoleRepository;
 import com.foodlink.repository.UserRepository;
 import com.foodlink.roles.Role;
+import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -24,8 +25,8 @@ public class UserService  {
     private PasswordEncoder passwordEncoder;
 
     public void loginUser(UserRegistrationDTO userDto) {
-        if(this.userRepository.findByCnpj(userDto.getCnpj()) == null) {
-            throw new DataIntegrityViolationException("User no exists");
+        if(!userExists(userDto.getCnpj())){
+            throw new IllegalArgumentException("Username or password is incorrect");
         }
     }
 
@@ -77,5 +78,9 @@ public class UserService  {
 
     public UserEntity findByCnpj(String cnpj) {
         return userRepository.findByCnpj(cnpj);
+    }
+
+    public boolean userExists(String cnpj) {
+        return userRepository.findByCnpj(cnpj) != null;
     }
 }

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Doação de Alimentos</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/restaurant/css/style.css}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Formulário de Doação de Alimentos</h1>
+        <form action="/submit-donation" method="post">
+            <!-- Informações do Restaurante -->
+            <div class="form-group">
+                <label for="restaurant-name">Nome do Restaurante</label>
+                <input type="text" id="restaurant-name" name="restaurant_name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="restaurant-address">Endereço</label>
+                <input type="text" id="restaurant-address" name="restaurant_address" required>
+            </div>
+
+            <div class="form-group">
+                <label for="restaurant-phone">Telefone de Contato</label>
+                <input type="tel" id="restaurant-phone" name="restaurant_phone" required>
+            </div>
+
+            <div class="form-group">
+                <label for="restaurant-email">Email de Contato</label>
+                <input type="email" id="restaurant-email" name="restaurant_email" required>
+            </div>
+
+            <!-- Informações da Doação -->
+            <div class="form-group">
+                <label for="food-type">Tipo de Alimento</label>
+                <select id="food-type" name="food_type" required>
+                    <option value="">Selecione</option>
+                    <option value="main_course">Prato Principal</option>
+                    <option value="dessert">Sobremesa</option>
+                    <option value="beverage">Bebida</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="food-description">Descrição do Alimento</label>
+                <input type="text" id="food-description" name="food_description" required>
+            </div>
+
+            <div class="form-group">
+                <label for="food-quantity">Quantidade</label>
+                <input type="number" id="food-quantity" name="food_quantity" required>
+            </div>
+
+            <div class="form-group">
+                <label for="availability-date">Data de Disponibilidade</label>
+                <input type="date" id="availability-date" name="availability_date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="availability-time">Horário de Disponibilidade</label>
+                <input type="time" id="availability-time" name="availability_time" required>
+            </div>
+
+            <div class="form-group">
+                <label for="observations">Observações</label>
+                <textarea id="observations" name="observations"></textarea>
+            </div>
+
+            <!-- Detalhes da Retirada -->
+            <div class="form-group">
+                <label for="pickup-method">Método de Retirada</label>
+                <select id="pickup-method" name="pickup_method" required>
+                    <option value="">Selecione</option>
+                    <option value="pickup">Retirada no Local</option>
+                    <option value="delivery">Entrega pela ONG</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="pickup-contact">Nome do Contato para Retirada</label>
+                <input type="text" id="pickup-contact" name="pickup_contact">
+            </div>
+
+            <div class="form-group">
+                <label for="pickup-phone">Telefone para Contato na Hora da Retirada</label>
+                <input type="tel" id="pickup-phone" name="pickup_phone">
+            </div>
+
+            <!-- Confirmação e Envio -->
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" name="confirmation" required>
+                    Confirmo que as informações estão corretas e a doação está pronta.
+                </label>
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Enviar Doação</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
