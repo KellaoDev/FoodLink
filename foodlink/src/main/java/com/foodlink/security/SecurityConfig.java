@@ -57,13 +57,16 @@ public class SecurityConfig {
         return http.csrf(c -> c.disable())
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/auth/register", "auth/displayRegister", "/auth/login").permitAll()
-                        .requestMatchers("/menu/entrar").hasAnyRole("RESTAURANTE", "ONG")
+                        .requestMatchers("/auth/loginUser/**", "/static/auth/loginUser/**").permitAll()
+                        .requestMatchers("/auth/registerUser/**", "/static/auth/registerUser/**").permitAll()
+                        .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
+                        .requestMatchers("/menu/painel").hasAnyRole("RESTAURANTE", "ONG")
                         .anyRequest().authenticated()
                 )
                 .formLogin(f -> f
                         .loginPage("/auth/login")
                         .loginProcessingUrl("/auth/login")
-                        .defaultSuccessUrl("/menu/entrar", true)
+                        .defaultSuccessUrl("/menu/painel", true)
                         .failureUrl("/auth/login?error=true")
                         .permitAll()
                 )

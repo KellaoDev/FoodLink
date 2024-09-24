@@ -23,13 +23,40 @@ public class UserService  {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    public void loginUser(UserRegistrationDTO userDto) {
+        if(this.userRepository.findByCnpj(userDto.getCnpj()) == null) {
+            throw new DataIntegrityViolationException("User no exists");
+        }
+    }
+
     public void registerUser(UserRegistrationDTO userDto) {
+
+        if (userDto.getCnpj() == null || userDto.getCnpj().isEmpty()) {
+            throw new IllegalArgumentException("CNPJ não pode ser nulo ou vazio");
+        }
+
+        if (userDto.getUsername() == null || userDto.getUsername().isEmpty()) {
+            throw new IllegalArgumentException("Nome de usuário não pode ser nulo ou vazio");
+        }
+
+        if (userDto.getPassword() == null || userDto.getPassword().isEmpty()) {
+            throw new IllegalArgumentException("Senha não pode ser nula ou vazia");
+        }
+
+        if (userDto.getConfirmPassword() == null || userDto.getConfirmPassword().isEmpty()) {
+            throw new IllegalArgumentException("Confirmação da senha não pode ser nula ou vazia");
+        }
+
         if (!userDto.getPassword().equals(userDto.getConfirmPassword())) {
-            throw new IllegalArgumentException("Passwords do not match");
+            throw new IllegalArgumentException("Senhas não são iguais");
+        }
+
+        if (userDto.getUserTypeEnum() == null) {
+            throw new IllegalArgumentException("Tipo de usuário não pode ser nula");
         }
 
         if (this.userRepository.findByCnpj(userDto.getCnpj()) != null) {
-            throw new DataIntegrityViolationException("User exists");
+            throw new DataIntegrityViolationException("Usuário existente");
         }
 
         UserEntity user = new UserEntity();
@@ -46,5 +73,9 @@ public class UserService  {
             user.setRoles(Set.of(roleOng));
         }
         userRepository.save(user);
+    }
+
+    public UserEntity findByCnpj(String cnpj) {
+        return userRepository.findByCnpj(cnpj);
     }
 }

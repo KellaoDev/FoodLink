@@ -8,6 +8,11 @@ import com.foodlink.roles.Role;
 import com.foodlink.service.UserService;
 import org.hibernate.usertype.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,13 +27,22 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private RoleRepository roleRepository;
-
     @GetMapping("/login")
-    public String exibirLogin() {
+    public String exibirLogin(Model model) {
         return "index";
     }
+
+    @PostMapping("/login")
+    public String loginUser(@ModelAttribute("user") UserRegistrationDTO userDto, Model model) {
+        try {
+            userService.loginUser(userDto);
+            return "redirect:/menu/painel";
+        } catch (BadCredentialsException e) {
+            model.addAttribute("error", e.getMessage());
+            return "index";
+        }
+    }
+
 
     @GetMapping("/displayRegister")
     public String displayRegister(Model model) {

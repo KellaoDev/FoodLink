@@ -11,8 +11,9 @@ import java.security.Principal;
 @RequestMapping("/menu")
 public class MenuController {
 
-    @GetMapping("/entrar")
+    @GetMapping("/painel")
     public String exibirMenu(Model model, Principal principal) {
+
         if (principal != null) {
             model.addAttribute("name", principal.getName());
         } else {
