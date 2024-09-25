@@ -129,3 +129,19 @@ input:focus {
     width: auto;
     margin-right: 10px;
 }
+
+.button {
+    background-color: #4169E1;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+.button:hover {
+    background-color: #6a85d6;
+}
