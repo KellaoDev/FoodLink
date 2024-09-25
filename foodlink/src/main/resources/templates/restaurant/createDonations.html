@@ -1,17 +1,17 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário de Doação de Alimentos</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/restaurant/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/restaurant/css/createDonations.css}">
 </head>
 <body>
 
     <div class="container">
         <h1>Formulário de Doação de Alimentos</h1>
         <form action="/submit-donation" method="post">
-            <!-- Informações do Restaurante -->
             <div class="form-group">
                 <label for="restaurant-name">Nome do Restaurante</label>
                 <input type="text" id="restaurant-name" name="restaurant_name" required>
@@ -32,7 +32,6 @@
                 <input type="email" id="restaurant-email" name="restaurant_email" required>
             </div>
 
-            <!-- Informações da Doação -->
             <div class="form-group">
                 <label for="food-type">Tipo de Alimento</label>
                 <select id="food-type" name="food_type" required>
@@ -68,7 +67,6 @@
                 <textarea id="observations" name="observations"></textarea>
             </div>
 
-            <!-- Detalhes da Retirada -->
             <div class="form-group">
                 <label for="pickup-method">Método de Retirada</label>
                 <select id="pickup-method" name="pickup_method" required>
@@ -88,7 +86,6 @@
                 <input type="tel" id="pickup-phone" name="pickup_phone">
             </div>
 
-            <!-- Confirmação e Envio -->
             <div class="form-group">
                 <label>
                     <input type="checkbox" name="confirmation" required>

@@ -6,12 +6,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("restaurante")
+@RequestMapping("/restaurante")
 public class RestaurantController {
 
-    @GetMapping
+    @GetMapping("/criar-doacoes")
     public String getRestaurants(Model model) {
-        return "restaurant/restaurant";
+        return "/restaurant/createDonations";
     }
 
+    @GetMapping("/minhas-doacoes-realizadas")
+    public String getMyDonationsCarriedOut(Model model) {
+        return "/restaurant/donationsCarriedOut";
+    }
 }

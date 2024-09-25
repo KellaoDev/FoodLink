@@ -1,0 +1,50 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Doações Realizadas</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/restaurant/css/donationsCarriedOut.css}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Minhas Doações Realizadas</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Prato</th>
+                    <th>ONG Destinatária</th>
+                    <th>Quantidade</th>
+                    <th>Data da Doação</th>
+                    <th>Status</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Lasanha</td>
+                    <td>ONG Bom Prato</td>
+                    <td>20 porções</td>
+                    <td>20/09/2024</td>
+                    <td>Concluída</td>
+                    <td><a href="#" class="button">Detalhes</a></td>
+                </tr>
+                <tr>
+                    <td>Sopa de Legumes</td>
+                    <td>Casa de Apoio Esperança</td>
+                    <td>30 porções</td>
+                    <td>21/09/2024</td>
+                    <td>Pendente</td>
+                    <td><a href="#" class="button">Detalhes</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a th:href="@{/menu/painel}" class="button" style="color: #FFF; background-color: #6c757d; cursor: pointer">Voltar ao Painel</a>
+    </div>
+
+</body>
+</html>

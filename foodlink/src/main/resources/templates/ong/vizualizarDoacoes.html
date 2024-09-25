@@ -1,0 +1,41 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/ong/css/vizualizarDoacoes.css}">
+    <title>Doações Disponíveis</title>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Doações Disponíveis</h1>
+
+        <div class="donation-card">
+            <h2>Prato Principal: Lasanha</h2>
+            <p><strong>Restaurante:</strong> Restaurante Bella Italia</p>
+            <p><strong>Quantidade:</strong> 20 porções</p>
+            <p><strong>Data Disponível:</strong> 20/09/2024</p>
+            <p><strong>Horário Disponível:</strong> 12:00 - 15:00</p>
+            <div class="details">
+                <p><strong>Descrição:</strong> Lasanha de carne com molho à bolonhesa, queijo e molho branco.</p>
+                <p><strong>Observações:</strong> Apenas para consumo no mesmo dia.</p>
+            </div>
+            <a href="#" class="button">Aceitar Doação</a>
+        </div>
+
+        <div class="donation-card">
+            <h2>Sobremesa: Pudim de Leite</h2>
+            <p><strong>Restaurante:</strong> Restaurante Doce Vida</p>
+            <p><strong>Quantidade:</strong> 15 unidades</p>
+            <p><strong>Data Disponível:</strong> 21/09/2024</p>
+            <p><strong>Horário Disponível:</strong> 10:00 - 14:00</p>
+            <div class="details">
+                <p><strong>Descrição:</strong> Pudim de leite condensado com caramelo.</p>
+                <p><strong>Observações:</strong> Deve ser retirado até as 14:00 para garantir qualidade.</p>
+            </div>
+            <a href="#" class="button">Aceitar Doação</a>
+        </div>
+        <a th:href="@{/menu/painel}" class="button" style="color: #FFF; background-color: #6c757d; cursor: pointer">Voltar ao Painel</a>
+    </div>

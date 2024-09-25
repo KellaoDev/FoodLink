@@ -1,0 +1,50 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Doações Recebidas</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/ong/css/minhasDoacoes.css}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Minhas Doações Recebidas</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Prato</th>
+                    <th>Restaurante</th>
+                    <th>Quantidade</th>
+                    <th>Data Recebida</th>
+                    <th>Observações</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Lasanha</td>
+                    <td>Restaurante Bella Italia</td>
+                    <td>20 porções</td>
+                    <td>20/09/2024</td>
+                    <td>Apenas consumo no mesmo dia.</td>
+                    <td><a href="#" class="button">Detalhes</a></td>
+                </tr>
+                <tr>
+                    <td>Pudim de Leite</td>
+                    <td>Restaurante Doce Vida</td>
+                    <td>15 unidades</td>
+                    <td>21/09/2024</td>
+                    <td>Deve ser consumido até o final do dia.</td>
+                    <td><a href="#" class="button">Detalhes</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a th:href="@{/menu/painel}" class="button" style="color: #FFF; background-color: #6c757d; cursor: pointer">Voltar ao Painel</a>
+    </div>
+
+</body>
+</html>

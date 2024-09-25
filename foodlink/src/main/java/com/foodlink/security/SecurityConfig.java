@@ -58,8 +58,9 @@ public class SecurityConfig {
                         .requestMatchers("/auth/loginUser/**", "/static/auth/loginUser/**").permitAll()
                         .requestMatchers("/auth/registerUser/**", "/static/auth/registerUser/**").permitAll()
                         .requestMatchers("/restaurante/**", "/static/restaurante/**").hasRole("RESTAURANTE")
-                        .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
+                        .requestMatchers("/ong/**", "/static/ong/**").hasRole("ONG")
                         .requestMatchers("/menu/painel").hasAnyRole("RESTAURANTE", "ONG")
+                        .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(f -> f

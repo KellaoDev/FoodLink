@@ -20,6 +20,7 @@ public class CustomUserDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
+        //Só estou imprimindo a role para teste
         System.out.println("Roles do usuário: " + userEntity.getRoles());
 
         return userEntity.getRoles()

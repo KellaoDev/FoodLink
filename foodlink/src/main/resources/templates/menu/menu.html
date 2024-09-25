@@ -6,14 +6,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" th:href="@{/menu/css/style.css}">
+
     <title>Painel de Navegação</title>
 </head>
 <body>
 <div class="navbar">
     <a th:href="@{/menu/painel}">Home</a>
-    <a href="#doar-alimentos" sec:authorize="hasRole('ROLE_RESTAURANTE')">Doar Alimentos</a>
-    <a href="#visualizar-doacoes" sec:authorize="hasRole('ROLE_ONG')">Visualizar Doações</a>
-    <a  th:href="@{/logout}">Sair</a>
+    <a th:href="@{/restaurante/criar-doacoes}" sec:authorize="hasRole('ROLE_RESTAURANTE')">Doar Alimentos</a>
+    <a th:href="@{/ong/vizualizar-doacoes}" sec:authorize="hasRole('ROLE_ONG')">Visualizar Doações</a>
+    <a th:href="@{/logout}">Sair</a>
 </div>
 
 <div class="container">
@@ -23,21 +24,25 @@
         <h2>Escolha uma opção para continuar:</h2>
 
         <div sec:authorize="hasRole('ROLE_ONG')">
-            <h3>ONGs</h3>
             <div class="buttonposition">
-                <a href="#visualizar-doacoes" class="button">Visualizar Doações Disponíveis</a>
-                <a href="#minhas-doacoes" class="button">Minhas Doações Recebidas</a>
+                <a th:href="@{/ong/vizualizar-doacoes}" class="button">Visualizar Doações Disponíveis</a>
+                <a th:href="@{/ong/minhas-doacoes}" class="button">Minhas Doações Recebidas</a>
             </div>
         </div>
 
         <div sec:authorize="hasRole('ROLE_RESTAURANTE')">
-            <h3>Restaurante</h3>
             <div class="buttonposition">
-                <a th:href="@{/restaurante}" class="button">Criar Nova Doação</a>
-                <a href="#doacoes-realizadas" class="button">Minhas Doações Realizadas</a>
+                <a th:href="@{/restaurante/criar-doacoes}" class="button">Criar Nova Doação</a>
+                <a th:href="@{/restaurante/minhas-doacoes-realizadas}" class="button">Minhas Doações Realizadas</a>
             </div>
         </div>
     </div>
 </div>
+
+<div class="footer">
+    <span id="hora"></span>
+</div>
+
+<script th:src="@{/menu/js/script.js}"></script>
 </body>
 </html>
